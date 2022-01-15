@@ -51,7 +51,6 @@ class LoggedHomeAuthView extends ConsumerWidget {
                 backgroundColor: Pallete.primaryLightColor,
                 elevation: 0,
                 centerTitle: false,
-           
                 title: Text(
                   'YOUR FRESUME ACCOUNT',
                   style: headline20.copyWith(color: Pallete.primaryColor, fontWeight: FontWeight.bold),

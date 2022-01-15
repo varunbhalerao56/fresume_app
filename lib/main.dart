@@ -14,6 +14,8 @@ import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+
+//Test commit
 Future<void> main() async {
   setPathUrlStrategy();
   await Firebase.initializeApp(
