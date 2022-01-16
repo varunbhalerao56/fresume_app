@@ -10,6 +10,7 @@ import 'package:fresume_app/global/theme/theme.dart';
 import 'package:fresume_app/global/widgets/loading.dart';
 
 import 'package:fresume_app/pages/home/view/home_view.dart';
+import 'package:fresume_app/pages/unknown/unknown_route.dart';
 import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
       ),
       theme: lightThemeDta,
       initialRoute: '/',
+      unknownRoute: GetPage(name: '/error', page: () => const UnknownRoute()),
       getPages: getPages,
     );
   }

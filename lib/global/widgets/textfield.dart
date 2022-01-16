@@ -28,7 +28,7 @@ class RectBorderFormField extends StatelessWidget {
       this.maxLines,
       this.suffix,
       this.validator,
-     required this.textEditingController,
+      required this.textEditingController,
       this.initialValue,
       this.hintText,
       this.onTextChanged,
@@ -53,7 +53,7 @@ class RectBorderFormField extends StatelessWidget {
           TextFormField(
             // style: const TextStyle(backgroundColor: Pallete.primaryLightColor),
             obscureText: obscureText ?? false,
-    controller: textEditingController ,
+            controller: textEditingController,
             maxLines: maxLines ?? 1,
             autocorrect: false,
             inputFormatters: inputFormatters ?? [],
@@ -81,11 +81,10 @@ class RectBorderFormField extends StatelessWidget {
               ),
               counterText: "",
               hintText: hintText,
-              hintStyle: const TextStyle(
-                  color: Pallete.primaryMidColor, backgroundColor: Pallete.primaryLightColor, fontSize: 14),
+              hintStyle:
+                  const TextStyle(color: Pallete.primaryMidColor, backgroundColor: Colors.transparent, fontSize: 14),
               filled: true,
               fillColor: Pallete.primaryLightColor,
-              hoverColor: Pallete.primaryLightColor,
               focusedErrorBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.red.shade900, width: 1.5),
                   borderRadius: const BorderRadius.only(

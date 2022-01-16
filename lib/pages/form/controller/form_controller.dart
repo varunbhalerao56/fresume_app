@@ -1,5 +1,25 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fresume_app/apis/auth.dart';
+import 'package:fresume_app/apis/resume.dart';
 import 'package:fresume_app/global/models/pdf_model.dart';
+
+final resumeApi = Provider<PdfModelApi?>((ref) {
+  return ref.watch(authStateChangeProvider).when(data: (data) {
+    if (data != null) {
+      return PdfModelApi(data.uid, ref.read(firebaseFirestoreProvider));
+    }
+
+    return null;
+  }, loading: () {
+    return null;
+  }, error: (e, s) {
+    throw (e);
+  });
+});
+
+final tempPdfProvider = StateProvider<PdfModel>((ref) {
+  return PdfModel.createEmpty().copyWith(pdfId: 'noSave');
+});
 
 final pdfProvider = StateNotifierProvider<PdfStateNotifier, PdfModel>((ref) {
   return PdfStateNotifier();
@@ -45,6 +65,8 @@ class PdfStateNotifier extends StateNotifier<PdfModel> {
         break;
       }
     }
+
+    state = state.copyWith(employment: sections);
   }
 
   void addEducationSection(Section section) {

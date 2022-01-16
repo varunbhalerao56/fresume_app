@@ -1,10 +1,9 @@
-import 'package:fresume_app/global/constants/constants.dart';
 import 'package:fresume_app/global/models/pdf_model.dart';
 
 PdfModel _pdfEmpty = PdfModel.createEmpty();
 
 PdfModel pdfModelData = _pdfEmpty.copyWith(
-  pdfId: uuid.v4(),
+  pdfId: '9ebe1243-de7a-4866-a006-35bcaa2d3b06',
   employment: [employmentSectionData],
   education: [educationSectionData],
   links: [linksData],
@@ -13,12 +12,15 @@ PdfModel pdfModelData = _pdfEmpty.copyWith(
   resumeSummary: summary,
   skills: skillsData,
   languages: language,
+  
 );
+
+
 
 Section employmentSectionData = const Section(
     sectionId: 'employmentSection',
     textOne: 'Flutter Developer',
-    textTwo: 'Natrually Plus',
+    textTwo: 'Naturally Plus Singapore Pte Ltd',
     textThree: 'Singapore',
     startDate: 'JUNE 2021',
     endDate: 'PRESENT',

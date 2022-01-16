@@ -1,16 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:fresume_app/apis/auth.dart';
 import 'package:fresume_app/global/constants/constants.dart';
-
+import 'package:fresume_app/global/models/pdf_model.dart';
 import 'package:fresume_app/global/theme/pallete.dart';
 import 'package:fresume_app/global/theme/theme.dart';
 import 'package:fresume_app/global/widgets/buttons.dart';
 import 'package:fresume_app/global/widgets/shape.dart';
-
+import 'package:fresume_app/pages/form/controller/form_controller.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -152,6 +151,8 @@ class LoginButton extends ConsumerWidget {
                   buttonWidth: double.infinity,
                   roundedRadius: 5,
                   onPressed: () {
+                    ref.watch(pdfProvider.notifier).editPdf(PdfModel.createEmpty().copyWith(pdfId: 'noSave'),);
+
                     Get.toNamed('/resume');
                   },
                   text: 'Continue without signing in'),
@@ -159,7 +160,7 @@ class LoginButton extends ConsumerWidget {
                 height: 16,
               ),
               Text(
-                'Using your Google will allow you to save up to 3 resumes, you can still continue without siging in but your resume will not be saved once you leave/refresh the site.',
+                'Using your Google account will allow you to save up to 3 resumes, you can still continue without signing in but your resume will not be saved once you leave/refresh the site.',
                 style: caption12.copyWith(color: Pallete.backgroundColor),
                 textAlign: TextAlign.center,
               ),

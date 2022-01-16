@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fresume_app/global/constants/constants.dart';
-import 'package:fresume_app/pages/form/controller/form_controller.dart';
+import 'package:fresume_app/global/functions/since_time.dart';
+import 'package:fresume_app/pages/unknown/not_logged_in.dart';
 import 'package:get/get.dart';
 import 'package:fresume_app/apis/auth.dart';
 import 'package:fresume_app/global/models/pdf_model.dart';
@@ -81,7 +81,7 @@ class LoggedHomeAuthView extends ConsumerWidget {
         )));
       }
 
-      return Container();
+      return const NoLoginRoute();
     }, loading: () {
       return progressWidget(context);
     }, error: (e, s) {
@@ -286,7 +286,7 @@ class AddResumeWidget extends ConsumerWidget {
                 children: [
                   Text(pdfModel.resumePersonal!.firstName!,
                       style: subtitle14.copyWith(color: Pallete.textColor, fontWeight: FontWeight.bold)),
-                  Text('Last saved at ' + dateFormat.format(pdfModel.lastUpdated).toString(),
+                  Text('Last saved ' + timeAgoSinceDate(pdfModel.lastUpdated),
                       style: subtitle14.copyWith(color: Colors.grey.shade400)),
                 ],
               ),
@@ -303,8 +303,7 @@ class AddResumeWidget extends ConsumerWidget {
               SimpleOutlinedButton(
                   color: Pallete.primaryColor,
                   onPressed: () async {
-                    ref.watch(pdfProvider.notifier).editPdf(pdfModel);
-                    Get.toNamed('/resume');
+                    Get.toNamed('/resume/${pdfModel.pdfId}');
                   },
                   text: 'Edit'),
             ],

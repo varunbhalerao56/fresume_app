@@ -29,6 +29,16 @@ class PdfModelApi {
     }
   }
 
+  Future<PdfModel> getSinglePdf(String id) async {
+    try {
+      final snapshot = await firestore.collection(USER_COLLECTION).doc(uid).collection(RESUME_COLLECTION).doc(id).get();
+
+      return PdfModel.fromJson(snapshot.data()!);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<bool> setPdfModel(String id, PdfModel data) async {
     try {
       await firestore
@@ -50,6 +60,18 @@ class PdfModelApi {
       return snapshot.docs.map((data) {
         return PdfModel.fromJson(data.data());
       }).toList();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Stream<List<PdfModel>> retrievePdfModelTwo() {
+    try {
+      final query = firestore.collection(USER_COLLECTION).doc(uid).collection(RESUME_COLLECTION);
+
+      return query.snapshots().map((snapshot) {
+        return snapshot.docs.map((doc) => PdfModel.fromJson(doc.data())).toList();
+      });
     } catch (e) {
       rethrow;
     }
